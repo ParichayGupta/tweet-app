@@ -3,7 +3,7 @@
 This is the backend for tweet-app-client
 
 it is created using Spring boot using java. 
-Database is MySQL and is configured in appllication.peoperties file. 
+Database is MySQL. 
 
 server-port = 9090
 
