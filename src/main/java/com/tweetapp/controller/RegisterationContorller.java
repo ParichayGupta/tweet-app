@@ -20,13 +20,13 @@ import net.bytebuddy.dynamic.TypeResolutionStrategy.Passive;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1.0/tweets")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RegisterationContorller {
 
 	@Autowired
 	RegisterationService registerationService;
 
 	@PostMapping("/register")
-	@CrossOrigin(origins = "http://localhost:4200")
 	public User register(@RequestBody User user) throws EmailAlreadyExist, UserNameAlreadyExist {
 		String userEmail = user.getUserEmail().trim();
 		String userName = user.getUserName().trim();
@@ -49,12 +49,11 @@ public class RegisterationContorller {
 	}
 
 	@PostMapping("/login")
-	@CrossOrigin(origins = "http://localhost:4200")
 	public User Login(@RequestBody User user) throws UserNotExistsException {
 		String userEmail = user.getUserEmail().trim();
 		String password = user.getPassword().trim();
 
-		log.info("Email: " + userEmail + " Password: " + password);
+//		log.info("Email: " + userEmail + " Password: " + password);
 		User checkUser = null;
 		if (userEmail != null && password != null) {
 			checkUser = registerationService.fetchByUserEmailAndPassword(userEmail, password);
